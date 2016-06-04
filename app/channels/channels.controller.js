@@ -8,7 +8,7 @@ angular.module('angularfireSlackApp')
     channelsCtrl.getGravatar = Users.getGravatar;
 
     channelsCtrl.newChannel = {
-      name: '';
+      name: ''
     };
 
     channelsCtrl.createChannel = function() {
