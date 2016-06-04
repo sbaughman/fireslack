@@ -68,4 +68,4 @@
 
      $urlRouterProvider.otherwise('/');
    })
-   .constant('FirebaseUrl', 'https://sbaughman-fireslack.firebaseio.com');
+   .constant('FirebaseUrl', 'https://sbaughman-fireslack.firebaseio.com/');
