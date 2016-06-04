@@ -16,10 +16,12 @@
    ])
    .config(function ($stateProvider, $urlRouterProvider) {
      $stateProvider
+
        .state('home', {
          url: '/',
          templateUrl: 'home/home.html'
        })
+
        .state('login', {
          url: '/login',
          controller: 'AuthCtrl as authCtrl',
@@ -34,6 +36,7 @@
            }
          }
        })
+
        .state('register', {
          url: '/register',
          controller: 'AuthCtrl as authCtrl',
@@ -48,6 +51,7 @@
            }
          }
        })
+
        .state('profile', {
          url: '/profile',
          controller: 'ProfileCtrl as profileCtrl',
@@ -61,6 +65,30 @@
            profile: function(Users, Auth) {
              return Auth.$requireAuth().then(function(auth){
                return Users.getProfile(auth.uid).$loaded();
+             });
+           }
+         }
+       })
+
+       .state('channels', {
+         url: '/channels',
+         controller: 'ChannelsCtrl as channelsCtrl',
+         templateUrl: 'channels/index.html',
+         resolve: {
+           channels: function(Channels) {
+             return Channels.$loaded();
+           },
+           profile: function($state, Auth, Users) {
+             return Auth.$requireAuth().then(function(auth) {
+               return Users.getProfile(auth.uid).$loaded().then(function(profile) {
+                 if (profile.displayName) {
+                   return profile;
+                 } else {
+                   $state.go('profile');
+                 }
+               });
+             }, function(error) {
+               $state.go('home');
              });
            }
          }
