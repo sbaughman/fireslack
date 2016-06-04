@@ -101,6 +101,12 @@
              });
            }
          }
+       })
+
+       .state('channels.create', {
+         url: '/create', 
+         controller: 'ChannelsCtrl as channelsCtrl',
+         templateUrl: 'channels/create.html',
        });
 
      $urlRouterProvider.otherwise('/');
