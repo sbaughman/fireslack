@@ -28,7 +28,7 @@
                return;
              });
            }
-         }       
+         }
        })
 
        .state('login', {
@@ -38,7 +38,7 @@
          resolve: {
            requireNoAuth: function($state, Auth) {
              return Auth.$requireAuth().then(function(auth){
-               $state.go('home');
+               $state.go('channels');
              }, function(error) {
                return;
              });
@@ -53,7 +53,7 @@
          resolve: {
            requireNoAuth: function($state, Auth) {
              return Auth.$requireAuth().then(function(auth){
-               $state.go('home');
+               $state.go('channels');
              }, function(error) {
                return;
              });
