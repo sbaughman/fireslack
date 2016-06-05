@@ -103,6 +103,22 @@
          }
        })
 
+       .state('channels.direct', {
+         url: '/{uid}/messages/direct',
+         controller: 'MessagesCtrl as messagesCtrl',
+         templateUrl: 'channels/messages.html',
+         resolve: {
+           messages: function($stateParams, Messages, profile) {
+             return Messages.forUsers($stateParams.uid, profile.$id).$loaded();
+           },
+           channelName: function($stateParams, Users) {
+             return Users.all.$loaded().then(function() {
+               return '@' + Users.getDisplayName($stateParams.uid);
+             });
+           }
+         }
+       })
+
        .state('channels.messages', {
          url: '/{channelId}/messages',
          controller: 'MessagesCtrl as messagesCtrl',
