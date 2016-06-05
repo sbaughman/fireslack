@@ -6,6 +6,7 @@ angular.module('angularfireSlackApp')
     channelsCtrl.channels = channels;
     channelsCtrl.displayName = Users.getDisplayName;
     channelsCtrl.getGravatar = Users.getGravatar;
+    channelsCtrl.users = Users.all;
 
     channelsCtrl.newChannel = {
       name: ''
