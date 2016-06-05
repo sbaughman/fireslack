@@ -103,8 +103,20 @@
          }
        })
 
+       .state('channels.messages', {
+         url: '/{channelId}/messages',
+         resolve: {
+           messages: function($stateParams, Messages) {
+             return Messages.forChannel($stateParams.channelId).$loaded();
+           },
+           channelName: function($stateParams, channels) {
+             return '#' + channels.$getRecord($stateParams.channelId).name;
+           }
+         }
+       })
+
        .state('channels.create', {
-         url: '/create', 
+         url: '/create',
          controller: 'ChannelsCtrl as channelsCtrl',
          templateUrl: 'channels/create.html',
        });
