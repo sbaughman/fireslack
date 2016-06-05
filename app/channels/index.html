@@ -10,7 +10,11 @@
         Channels
       </div>
       <div class="channel" ng-repeat="channel in channelsCtrl.channels">
-        <a># {{ channel.name }}</a>      
+        <a># {{ channel.name }}</a>
+      </div>
+
+      <div class="channel create">
+        <a ui-sref="channels.create">+ create channel</a>
       </div>
     </div>
 
