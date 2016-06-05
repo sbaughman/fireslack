@@ -105,6 +105,8 @@
 
        .state('channels.messages', {
          url: '/{channelId}/messages',
+         controller: 'MessagesCtrl as messagesCtrl',
+         template: 'channels/messages.html',
          resolve: {
            messages: function($stateParams, Messages) {
              return Messages.forChannel($stateParams.channelId).$loaded();
