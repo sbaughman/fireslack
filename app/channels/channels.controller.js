@@ -7,10 +7,11 @@ angular.module('angularfireSlackApp')
     channelsCtrl.displayName = Users.getDisplayName;
     channelsCtrl.getGravatar = Users.getGravatar;
     channelsCtrl.users = Users.all;
-
     channelsCtrl.newChannel = {
       name: ''
     };
+
+    Users.setOnline(profile.$id);
 
     channelsCtrl.createChannel = function() {
       channelsCtrl.channels.$add(channelsCtrl.newChannel).then(function() {
@@ -19,7 +20,10 @@ angular.module('angularfireSlackApp')
     };
 
     channelsCtrl.logout = function() {
-      Auth.$unauth();
-      $state.go('home');
+      channelsCtrl.profile.online = null;
+      channelsCtrl.profile.$save().then(function(){
+        Auth.$unauth();
+        $state.go('home');
+      });  
     };
   });
